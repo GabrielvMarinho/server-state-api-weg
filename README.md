@@ -1,0 +1,1 @@
+Application to run a websocket server which deals with the current state of the server
