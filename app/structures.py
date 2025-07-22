@@ -11,5 +11,5 @@ class Broadcast(BaseModel):
     macros_running: List[Macro]
     
 class BroadcastDTO(BaseModel):
-    status: str
-    macros_running: List[Macro]
+    status: str = ""
+    macros_running: List[Macro] = []
