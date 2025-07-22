@@ -9,9 +9,7 @@ class Broadcast(BaseModel):
     token: str
     status: str
     macros_running: List[Macro]
-
+    
 class BroadcastDTO(BaseModel):
     status: str
-    macro_running: str
-    time_started: str
     macros_running: List[Macro]
