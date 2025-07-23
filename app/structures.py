@@ -1,15 +1,20 @@
 from pydantic import BaseModel
 from typing import List
 
-class Macro(BaseModel):
+class MacroPost(BaseModel):
+    id: str
+    name: str
+    
+class MacroResponse(BaseModel):
+    id: str
     name: str
     time_started: str
 
 class Broadcast(BaseModel):
     token: str
-    status: str
-    macros_running: List[Macro]
-    
-class BroadcastDTO(BaseModel):
-    status: str = ""
-    macros_running: List[Macro] = []
+    macro: MacroPost
+
+class BroadcastFinishMacro(BaseModel):
+    token: str
+    id: str
+
