@@ -1,8 +1,10 @@
 from fastapi import WebSocket
-from structures import MacroPost
+from structures import MacroPost, MacroResponse
 from dotenv import load_dotenv
 import uuid
 import traceback
+from datetime import datetime
+
 load_dotenv()
 
 class WsManager:
@@ -38,8 +40,6 @@ class WsManager:
         except:
             traceback.print_exc()
 
-
-
     @staticmethod
     async def add_to_state(macro: MacroPost):
         alreadyExists = False
@@ -48,17 +48,17 @@ class WsManager:
                 alreadyExists = True
 
         if(not alreadyExists and len(WsManager.currentStateMacros) <= 6):
-            WsManager.currentStateMacros.append(macro.model_dump())
+            macro_data = macro.model_dump()
+            macro_data["time_started"] = f"{datetime.now().hour}:{datetime.now().minute}"
+            finalMacro = MacroResponse(**macro_data)
+            WsManager.currentStateMacros.append(finalMacro.model_dump())
             return
 
         raise Exception("Macro already existant")
     @staticmethod
     async def remove_from_state(id: str):
-        print(WsManager.currentStateMacros)
         for macroInList in list(WsManager.currentStateMacros):
             if macroInList["id"] == id:
                 WsManager.currentStateMacros.remove(macroInList)
                 return
         raise Exception("No macro to remove")
-
-    
