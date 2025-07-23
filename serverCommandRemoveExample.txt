@@ -1,0 +1,4 @@
+Invoke-WebRequest -Uri http://127.0.0.1:5555/broadcast/remove/macro`
+    -Method POST `
+    -Headers @{ "Content-Type" = "application/json" } `
+    -Body '{"token":"abc123xyz","id":"Macro 1"}'
