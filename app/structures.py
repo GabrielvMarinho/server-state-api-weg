@@ -18,3 +18,5 @@ class BroadcastFinishMacro(BaseModel):
     token: str
     id: str
 
+class BroadcastFinishAllMacro(BaseModel):
+    token: str

@@ -1,9 +1,14 @@
-from structures import Broadcast, BroadcastFinishMacro
+from structures import Broadcast, BroadcastFinishMacro, BroadcastFinishAllMacro
 import os
 from WsManager import WsManager
 import traceback
 
-
+async def remove_all_and_broadcast(broadcast :BroadcastFinishAllMacro):
+    if is_token_valid(broadcast.token):
+        await WsManager.remove_all_from_state()
+    else:
+        {"status":"fail", "error":"Not valid token"}
+        
 async def remove_and_broadcast(broadcast :BroadcastFinishMacro):
     if is_token_valid(broadcast.token):
         try:

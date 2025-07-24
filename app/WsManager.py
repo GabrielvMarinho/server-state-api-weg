@@ -62,3 +62,15 @@ class WsManager:
                 WsManager.currentStateMacros.remove(macroInList)
                 return
         raise Exception("No macro to remove")
+    
+    @staticmethod
+    async def remove_all_from_state():
+        hasMacro = False
+        for macroInList in list(WsManager.currentStateMacros):
+            WsManager.currentStateMacros.remove(macroInList)
+            hasMacro = True    
+        if(not hasMacro):
+            raise Exception("No macro to remove")
+        else:
+            await WsManager.broadcast_new_state()
+    

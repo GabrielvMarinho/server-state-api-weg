@@ -1,0 +1,4 @@
+Invoke-WebRequest -Uri http://127.0.0.1:5555/api/broadcast/remove/all`
+    -Method DELETE `
+    -Headers @{ "Content-Type" = "application/json" } `
+    -Body '{"token":"abc123xyz"}'
